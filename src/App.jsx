@@ -1,22 +1,22 @@
+import {useState} from 'react';
 import Header from "./components/Header";
 
 function App() {
-  const title = "Welcome to My App";
-  const age = 20;
-  const link = "daffa-portofolio.000webhostapp.com";
+  const [title, setTitle] = useState("Welcome to My App");
+  const [age, setAge] = useState(200);
 
-  const clickMe = (name) => {
-    console.log('Hello' + name);
-  }
+  const changeTitle = () => {
+    setTitle("Title Changed");
+    setAge(40);
+  };
 
   return (
     <>
       <div>
         <Header />
         <h1>{title}</h1>
-        <h1>{age * 2}</h1>
-        <a href={link}>Go To My Portofolio</a>
-        <button onClick={() => clickMe('Daffa')}>Click Me</button>
+        <h1>Age: {age}</h1>
+        <button onClick={changeTitle}>Change Title</button>
       </div>
     </>
   );
