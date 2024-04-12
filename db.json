@@ -1,9 +1,9 @@
 {
   "products": [
     {
-      "id": "1",
       "title": "Product 1",
-      "price": 899
+      "price": "899",
+      "id": "1"
     },
     {
       "id": "2",
@@ -21,14 +21,9 @@
       "price": 122
     },
     {
-      "id": "5",
-      "title": "Product 5",
-      "price": 108
-    },
-    {
-      "id": 6,
-      "title": "Buku",
-      "price": "2000"
+      "title": "Aqua Gelas",
+      "price": "2000",
+      "id": "5"
     }
   ]
 }
