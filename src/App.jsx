@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import About from "./components/About";
+import Contact from "./components/Contact";
 import ProductList from "./components/ProductList";
 
 function App() {
-  const [title, setTitle] = useState("Welcome to My App");
-  const [age, setAge] = useState(200);
   const [products, setProducts] = useState([
     { id: 1, title: "Product 1", price: 500 },
     { id: 2, title: "Product 2", price: 1000 },
@@ -17,23 +17,24 @@ function App() {
   const deleteProduct = (productId) => {
     const newProducts = products.filter(product => product.id !== productId);
     setProducts(newProducts);
-  }
+  };
 
   const [name, setName] = useState("Daffa");
 
   useEffect(() => {
     console.log("Use Effect running");
-  }, [name])
+  }, [name]);
 
   return (
-    <>
-      <div>
-        <Header />
-        <ProductList products={products} deleteProduct={deleteProduct} />
-        <button onClick={() => setName('Syarif')}>Change Name</button>
-        <p>{name}</p>
-      </div>
-    </>
+    <div>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<ProductList products={products} deleteProduct={deleteProduct} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
