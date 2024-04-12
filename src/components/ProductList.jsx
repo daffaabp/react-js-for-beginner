@@ -5,17 +5,28 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fectData();
+    fetchData();
   }, []);
 
-  const fectData = async () => {
+  const fetchData = async () => {
     const response = await fetch("http://localhost:3000/products");
     const data = await response.json();
     setProducts(data);
   };
 
+  const deleteProduct = async (id) => {
+    await fetch(`http://localhost:3000/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    fetchData();
+  }
+
   return (
     <div>
+    <Link to="/add" className="button is-primary mb-3">Add New Product</Link>
       <table className="table is-stripped">
         <thead>
           <tr>
@@ -32,8 +43,8 @@ const ProductList = () => {
               <td>{product.title}</td>
               <td>{product.price}</td>
               <td>
-                <Link to={`/edit/${product.id}`} className="button is-small is-info">Edit</Link>
-                <button className="button is-small is-danger">Delete</button>
+                <Link to={`/edit/${product.id}`} className="button is-small is-info mr-2">Edit</Link>
+                <button onClick={() => deleteProduct(product.id)} className="button is-small is-danger">Delete</button>
               </td>
             </tr>
           ))}
